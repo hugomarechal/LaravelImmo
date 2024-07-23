@@ -11,7 +11,7 @@ class PropertyContactRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class PropertyContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'firstname' => ['required', 'string', 'min:2'],
+            'lastname' => ['required', 'string', 'min:2'],
+            'tel' => ['required', 'string', 'min:10'],
+            'email' => ['required', 'email', 'min:4'],
+            'message' => ['required', 'string', 'min:4'],
         ];
     }
 }
