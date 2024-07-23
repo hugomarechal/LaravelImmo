@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PropertyFormRequest;
-use App\Models\Option;
+use App\Models\Tag;
 use App\Models\Property;
 use Illuminate\Http\Request;
 
@@ -37,7 +37,7 @@ class PropertyController extends Controller
         ]);
         return view('admin.properties.form', [
             'property' => $property,
-            'options' => Option::pluck('name', 'id'),
+            'tags' => Tag::pluck('name', 'id'),
         ]);
     }
 
@@ -46,8 +46,9 @@ class PropertyController extends Controller
      */
     public function store(PropertyFormRequest $request)
     {
-        $property = Property::create($request->validated());
-        $property->options()->sync($request->validated('options'));
+        $property = Property::create($request->all());
+        // dd($property->tags);
+        $property->tags()->sync($request->tags);
         return to_route('admin.property.index')->with('success', 'Le bien a été créé');
     }
 
@@ -56,7 +57,7 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        return view('admin.properties.form', ['property' => $property, 'options' => Option::pluck('name', 'id'),]);
+        return view('admin.properties.form', ['property' => $property, 'tags' => Tag::pluck('name', 'id'),]);
     }
 
     /**
@@ -64,8 +65,10 @@ class PropertyController extends Controller
      */
     public function update(PropertyFormRequest $request, Property $property)
     {
-        $property->update($request->validated());
-        $property->options()->sync($request->validated('options'));
+        $property->update($request->except('tags'));
+        // dd($property->tags, $request->tags);
+
+        $property->tags()->sync($request->tags);
         return to_route('admin.property.index')->with('success', 'Le bien a été modifié');
     }
 

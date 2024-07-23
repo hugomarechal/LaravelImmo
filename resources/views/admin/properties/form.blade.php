@@ -28,7 +28,7 @@
             @include('shared.input', ['class' => 'col', 'name'=>'city', 'value'=>$property->city])
             @include('shared.input', ['class' => 'col', 'name'=>'postcode', 'value'=>$property->postcode])
         </div>
-        @include('shared.select', ['name'=>'options', 'label'=>'Tags', 'value'=>$property->options()->pluck('id'), 'multiple'=>true, 'options' => $options])
+        @include('shared.select', ['name'=>'tags', 'label'=>'Tags', 'selected'=>$property->tags()->pluck('id'), 'multiple'=>true, 'tags' => $tags])
         @include('shared.checkbox', ['name'=>'sold', 'value'=>$property->sold])
 
         <div>

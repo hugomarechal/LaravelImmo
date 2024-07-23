@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('option_property', function (Blueprint $table) {
-            $table->foreignIdFor(\App\Models\Option::class)->constrained()->cascadeOnDelete();
+        Schema::create('tag_property', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(\App\Models\Tag::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\Property::class)->constrained()->cascadeOnDelete();
-            $table->primary('option_id', 'property_id');
+            $table->primary('tag_id', 'property_id');
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('option_property');
+        Schema::dropIfExists('tag_property');
     }
 };

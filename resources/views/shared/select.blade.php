@@ -1,15 +1,8 @@
-@php
-    $class ??= null;
-    $name ??= '';
-    $value ??= collect([]);
-    $label ??= ucfirst($name);
-
-@endphp
-<div @class(['form-group', $class])>
+<div @class(['form-group'])>
     <label for="{{$name}}">{{$label}}</label>
     <select name="{{$name}}[]" id="{{$name}}" multiple>
-        @foreach($options as $k => $v)
-            <option @if(collect($value)->contains($k)) selected @endif value="{{$k}}">{{$v}}</option>
+        @foreach($tags as $key => $name)
+            <option @if($selected->contains($key)) selected @endif value="{{$key}}">{{$name}}</option>
         @endforeach
     </select>
     @error($name)

@@ -16,7 +16,7 @@
                     <a @class(['nav-link', 'active' => str_contains($route, 'property.')]) href="{{route('admin.property.index')}}">Gérer les biens</a>
                 </li>
                 <li class="nav-item">
-                    <a @class(['nav-link', 'active' => str_contains($route, 'options.')]) href="{{route('admin.option.index')}}">Gérer les tags</a>
+                    <a @class(['nav-link', 'active' => str_contains($route, 'options.')]) href="{{route('admin.tags.index')}}">Gérer les tags</a>
                 </li>
             </ul>
         </div>

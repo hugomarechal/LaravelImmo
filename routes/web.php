@@ -17,5 +17,5 @@ Route::post('/biens/{property}/contact', [\App\Http\Controllers\PropertyControll
 
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('property', \App\Http\Controllers\Admin\PropertyController::class)->except(['show']);
-    Route::resource('option', \App\Http\Controllers\Admin\OptionController::class)->except(['show']);
+    Route::resource('tags', \App\Http\Controllers\Admin\TagController::class)->except(['show']);
 });

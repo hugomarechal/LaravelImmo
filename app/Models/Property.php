@@ -25,8 +25,8 @@ class Property extends Model
         'sold',
     ];
 
-    public function options(): BelongsToMany {
-        return $this->belongsToMany(Option::class);
+    public function tags(): BelongsToMany {
+        return $this->belongsToMany(Tag::class, 'tag_property');
     }
 
     public function getSlug(): string
