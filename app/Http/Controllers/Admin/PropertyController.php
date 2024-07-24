@@ -25,19 +25,9 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        $property = new Property();
-        $property->fill([
-            'surface' => 40,
-            'rooms' => 3,
-            'bedrooms' => 1,
-            'floor' => 0,
-            'city' => 'Marseille',
-            'postcode' => 13000,
-            'sold' => false,
-        ]);
         return view('admin.properties.form', [
-            'property' => $property,
-            'tags' => Tag::pluck('name', 'id'),
+            'property' => null,
+            'tags' => Tag::all(),
         ]);
     }
 
@@ -57,7 +47,7 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        return view('admin.properties.form', ['property' => $property, 'tags' => Tag::pluck('name', 'id'),]);
+        return view('admin.properties.form', ['property' => $property, 'tags' => Tag::all()]);
     }
 
     /**

@@ -26,7 +26,7 @@ class Property extends Model
     ];
 
     public function tags(): BelongsToMany {
-        return $this->belongsToMany(Tag::class, 'tag_property');
+        return $this->belongsToMany(Tag::class);
     }
 
     public function getSlug(): string

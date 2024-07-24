@@ -1,8 +1,8 @@
 <div @class(['form-group'])>
     <label for="{{$name}}">{{$label}}</label>
     <select name="{{$name}}[]" id="{{$name}}" multiple>
-        @foreach($tags as $key => $name)
-            <option @if($selected->contains($key)) selected @endif value="{{$key}}">{{$name}}</option>
+        @foreach($tags as $key => $tag)
+            <option @if($property && $selected->contains($key)) selected @endif value="{{$key}}">{{$tag->name}}</option>
         @endforeach
     </select>
     @error($name)

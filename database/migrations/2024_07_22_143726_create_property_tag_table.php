@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tag_property', function (Blueprint $table) {
+        Schema::create('property_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Tag::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\Property::class)->constrained()->cascadeOnDelete();
-            $table->primary('tag_id', 'property_id');
+            $table->foreignId('tag_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->foreignId('property_id')->references('id')->on('properties')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tag_property');
+        Schema::dropIfExists('property_tag');
     }
 };
