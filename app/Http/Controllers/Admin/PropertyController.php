@@ -37,8 +37,9 @@ class PropertyController extends Controller
     public function store(PropertyFormRequest $request)
     {
         $property = Property::create($request->all());
-        // dd($property->tags);
         $property->tags()->sync($request->tags);
+        $property->attachFiles(($request->validated('pictures')));
+
         return to_route('admin.property.index')->with('success', 'Le bien a été créé');
     }
 
@@ -56,9 +57,8 @@ class PropertyController extends Controller
     public function update(PropertyFormRequest $request, Property $property)
     {
         $property->update($request->except('tags'));
-        // dd($property->tags, $request->tags);
-
         $property->tags()->sync($request->tags);
+        $property->attachFiles(($request->validated('pictures')));
         return to_route('admin.property.index')->with('success', 'Le bien a été modifié');
     }
 
