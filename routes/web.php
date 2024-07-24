@@ -15,7 +15,11 @@ Route::post('/biens/{property}/contact', [\App\Http\Controllers\PropertyControll
     'property' => $idRegex,
 ]);
 
-Route::prefix('admin')->name('admin.')->group(function() {
+Route::get('/login', [\App\Http\Controllers\AuthController::class, 'get_login'])->middleware('guest')->name('login');
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::delete('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->middleware('auth')->name('logout');
+
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
     Route::resource('property', \App\Http\Controllers\Admin\PropertyController::class)->except(['show']);
     Route::resource('tags', \App\Http\Controllers\Admin\TagController::class)->except(['show']);
 });

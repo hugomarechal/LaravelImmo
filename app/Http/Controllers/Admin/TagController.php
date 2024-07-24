@@ -37,7 +37,7 @@ class TagController extends Controller
     public function store(TagFormRequest $request)
     {
         $tag = Tag::create($request->validated());
-        return to_route('admin.tag.index')->with('success', 'Le tag a été créé');
+        return to_route('admin.tags.index')->with('success', 'Le tag a été créé');
     }
 
     /**
@@ -54,7 +54,7 @@ class TagController extends Controller
     public function update(TagFormRequest $request, Tag $tag)
     {
         $tag->update($request->validated());
-        return to_route('admin.tag.index')->with('success', 'Le tag a été modifié');
+        return to_route('admin.tags.index')->with('success', 'Le tag a été modifié');
     }
 
     /**
@@ -63,7 +63,7 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        return to_route('admin.tag.index')->with('success', 'Le tag a été supprimé');
+        return to_route('admin.tags.index')->with('success', 'Le tag a été supprimé');
 
     }
 }
