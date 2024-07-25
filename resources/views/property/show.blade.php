@@ -3,14 +3,20 @@
 @section('title', $property->title)
 
 @section('content')
-<div class="container">
+<div class="container mt-4">
+    <div class="row">
+        <div class="row">
+            <h1>{{$property->title}}</h1>
+            <h2>{{$property->rooms}} pièces dans {{$property->surface}} m2</h2>
+            <h2>{{$property->city}}</h2>
 
-    <h1>{{$property->title}}</h1>
-    <h2>{{$property->rooms}} pièces dans {{$property->surface}} m2</h2>
-    <h2>{{$property->city}}</h2>
+            <div class="text-primary fw-bold" style="font-size: 4rem">
+                {{number_format($property->price, thousands_separator: ' ')}} €
+            </div>
+        </div>
+        <div class="row">
 
-    <div class="text-primary fw-bold" style="font-size: 4rem">
-        {{number_format($property->price, thousands_separator: ' ')}} €
+        </div>
     </div>
 
     <hr>
@@ -63,8 +69,8 @@
                     Spécificités
                 </h2>
                 <ul class="list-group">
-                    @foreach($property->options as $option)
-                        <li class="list-group-item">{{$option->name}}</li>
+                    @foreach($property->tags as $tag)
+                        <li class="list-group-item">{{$tag->name}}</li>
                     @endforeach
                 </ul>
             </div>
